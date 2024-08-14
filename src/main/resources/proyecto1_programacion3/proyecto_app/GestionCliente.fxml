@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto1_programacion3.proyecto_app.viewController.ClienteViewController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#080e48" height="33.0" layoutX="14.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="637.0" />
+      <Label layoutX="33.0" layoutY="18.0" prefHeight="26.0" prefWidth="153.0" text="GESTIÓN DE CLIENTES" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="87.0" text="Nombre: " />
+      <Label layoutX="80.0" layoutY="129.0" text="Cédula: " />
+      <TextField fx:id="txtNombreCliente" layoutX="130.0" layoutY="83.0" promptText="Ingresar nombre" />
+      <TextField fx:id="txtCedulaCliente" layoutX="130.0" layoutY="125.0" promptText="Ingresar cédula" />
+      <Label layoutX="379.0" layoutY="87.0" text="Correo: " />
+      <TextField fx:id="txtCorreoCliente" layoutX="436.0" layoutY="83.0" promptText="Ingresar correo" />
+      <Label layoutX="378.0" layoutY="129.0" text="Telefono: " />
+      <TextField fx:id="txtTelefono" layoutX="436.0" layoutY="125.0" promptText="Ingresar teléfono" />
+      <Separator layoutX="8.0" layoutY="180.0" prefHeight="0.0" prefWidth="647.0" />
+      <Button layoutX="110.0" layoutY="190.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #080e48;" text="Limpiar" textFill="WHITE" />
+      <Button layoutX="306.0" layoutY="190.0" mnemonicParsing="false" onAction="#onAgregar" style="-fx-background-color: #080e48;" text="Agregar" textFill="WHITE" />
+      <Button layoutX="487.0" layoutY="190.0" mnemonicParsing="false" onAction="#onActualizar" style="-fx-background-color: #080e48;" text="Actualizar" textFill="WHITE" />
+      <TableView fx:id="tableCustomer" layoutX="74.0" layoutY="282.0" prefHeight="200.0" prefWidth="511.0">
+         <columns>
+            <TableColumn fx:id="tcNombre" prefWidth="149.33334350585938" text="Nombre" />
+            <TableColumn fx:id="tcCedula" minWidth="1.33331298828125" prefWidth="108.66668701171875" text="Cédula" />
+            <TableColumn fx:id="tcCorreo" prefWidth="129.33331298828125" text="Correo" />
+            <TableColumn fx:id="tcTelefono" prefWidth="124.0" text="Teléfono" />
+         </columns>
+      </TableView>
+      <Button layoutX="304.0" layoutY="498.0" mnemonicParsing="false" onAction="#onEliminar" style="-fx-background-color: #080e48;" text="Eliminar" textFill="WHITE" />
+      <Separator layoutX="5.0" layoutY="58.0" prefHeight="3.0" prefWidth="647.0" />
+      <TextField fx:id="txtFilter" alignment="CENTER" layoutX="72.0" layoutY="232.0" prefHeight="25.0" prefWidth="518.0" promptText="filtrar" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="598.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../../Downloads/Imagen_de_WhatsApp_2024-08-05_a_las_19.58.21_a0e14d5a-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
