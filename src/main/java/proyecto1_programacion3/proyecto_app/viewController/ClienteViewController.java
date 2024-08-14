@@ -62,8 +62,10 @@ public class ClienteViewController {
 
     @FXML
     void onActualizar(ActionEvent event) {
+        actualizarUsuario();
 
     }
+
 
     @FXML
     void onAgregar(ActionEvent event) {
@@ -80,6 +82,7 @@ public class ClienteViewController {
 
     @FXML
     void onEliminar(ActionEvent event) {
+        eliminarCliente(clienteSeleccionado);
 
     }
 
@@ -173,6 +176,52 @@ public class ClienteViewController {
         }
     }
 
+    private void eliminarCliente(Cliente clienteSeleccionado) {
+        if (clienteSeleccionado != null) {
+            if (mostrarMensajeConfirmacion("¿Está seguro que desea eliminar este cliente?")) {
+                if (clienteController.eliminarCliente(clienteSeleccionado)) {
+                    int index = listaClientes.indexOf(clienteSeleccionado);
+                    listaClientes.remove(index);
+                    mostrarMensaje("Notificación", "Cliente eliminado", "El cliente ha sido eliminado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarDatos();
+                    deseleccionarCliente();
+                } else {
+                    mostrarMensaje("Error", "Eliminación fallida", "No se pudo eliminar el cliente.", Alert.AlertType.ERROR);
+                }
+            }
+        } else {
+            mostrarMensaje("Advertencia", "Selección requerida", "Debe seleccionar un cliente para eliminar.", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void actualizarUsuario() {
+        if (clienteSeleccionado != null) {
+            Cliente clienteActualizado = buildDataCliente();
+            boolean resultado = clienteController.actualizarCliente(clienteSeleccionado, clienteActualizado);
+            if (resultado) {
+                actualizarListaCliente(clienteSeleccionado, clienteActualizado);
+                mostrarMensaje("Notificación Cliente", "Cliente actualizado",
+                        "El cliente ha sido actualizado con éxito", Alert.AlertType.INFORMATION);
+                limpiarDatos();
+
+            }else{
+                mostrarMensaje("Error", "Actualización fallida",
+                        "No se pudo actualizar el cliente.", Alert.AlertType.ERROR);
+            }
+        }else{
+            mostrarMensaje("Error", "Selección requerida",
+                    "Debe seleccionar un cliente para actualizar.", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void actualizarListaCliente(Cliente clienteSeleccionado, Cliente clienteActualizado) {
+        int index = listaClientes.indexOf(clienteSeleccionado);
+        if(index!=-1){
+            listaClientes.set(index, clienteActualizado);
+        }
+    }
+
+
     private void deseleccionarCliente() {
         tableCustomer.getSelectionModel().clearSelection();
         clienteSeleccionado = null;
@@ -202,7 +251,7 @@ public class ClienteViewController {
                 && !txtTelefono.getText().isEmpty();
     }
 
-    private boolean mostrarMensajeConfirmacion(String message){
+    private boolean mostrarMensajeConfirmacion(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setTitle("Confirmación");
@@ -222,7 +271,6 @@ public class ClienteViewController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 
 
 }

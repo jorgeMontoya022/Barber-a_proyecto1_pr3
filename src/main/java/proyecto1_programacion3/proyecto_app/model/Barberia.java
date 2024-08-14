@@ -1,9 +1,11 @@
 package proyecto1_programacion3.proyecto_app.model;
 
+import proyecto1_programacion3.proyecto_app.services.IGestionCliente;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Barberia {
+public class Barberia implements IGestionCliente {
     private List<Cliente> listaClientes = new ArrayList<>();
     private List<Barbero> listaBarberos = new ArrayList<>();
     private List<GestionCita> listaGestionCitas = new ArrayList<>();
@@ -35,7 +37,7 @@ public class Barberia {
     public void setListaGestionCitas(List<GestionCita> listaGestionCitas) {
         this.listaGestionCitas = listaGestionCitas;
     }
-
+    @Override
     public boolean crearCliente(Cliente cliente) {
         Cliente clienteEncontrado = buscarCliente(cliente.getCedula());
         if(clienteEncontrado == null) {
@@ -52,5 +54,27 @@ public class Barberia {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean eliminarCliente(Cliente clienteSeleccionado) {
+        if(clienteSeleccionado != null){
+            int index = getListaClientes().indexOf(clienteSeleccionado);
+            if (index !=-1) {
+                getListaClientes().remove(index);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean actualizarCliente(Cliente clienteSeleccionado, Cliente clienteActualizado) {
+        int index = getListaClientes().indexOf(clienteSeleccionado);
+        if(index!=-1){
+            getListaClientes().set(index, clienteActualizado);
+            return true;
+        }
+        return false;
     }
 }

@@ -45,7 +45,7 @@
       <TextField fx:id="txtFilter" alignment="CENTER" layoutX="72.0" layoutY="232.0" prefHeight="25.0" prefWidth="518.0" promptText="filtrar" />
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="598.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../Downloads/Imagen_de_WhatsApp_2024-08-05_a_las_19.58.21_a0e14d5a-removebg-preview.png" />
+            <Image url="@../../img/logo.png" />
          </image>
       </ImageView>
    </children>

@@ -19,4 +19,12 @@ public class ClienteController {
     public boolean crearCliente(Cliente cliente) {
         return modelFactory.crearCliente(cliente);
     }
+
+    public boolean eliminarCliente(Cliente clienteSeleccionado) {
+        return modelFactory.eliminarCliente(clienteSeleccionado);
+    }
+
+    public boolean actualizarCliente(Cliente clienteSeleccionado, Cliente clienteActualizado) {
+        return modelFactory.actualizarCliente(clienteSeleccionado, clienteActualizado);
+    }
 }

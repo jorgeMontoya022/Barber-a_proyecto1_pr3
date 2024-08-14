@@ -1,38 +1,21 @@
 package proyecto1_programacion3.proyecto_app.model;
 
-public class Cliente {
-    private String nombre;
-    private String cedula;
+public class Cliente extends Persona {
     private String correo;
     private String telefono;
     private Barbero barbero;
 
+    public Cliente(String nombre, String cedula) {
+        super(nombre, cedula);
+    }
+
     public Cliente(String nombre, String cedula, String correo, String telefono, Barbero barbero) {
-        this.nombre = nombre;
-        this.cedula = cedula;
+        super(nombre, cedula);
         this.correo = correo;
         this.telefono = telefono;
         this.barbero = barbero;
     }
 
-    public Cliente() {
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
 
     public String getCorreo() {
         return correo;
