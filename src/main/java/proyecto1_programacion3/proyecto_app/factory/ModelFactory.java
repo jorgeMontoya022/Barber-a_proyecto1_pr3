@@ -1,18 +1,20 @@
 package proyecto1_programacion3.proyecto_app.factory;
 
-import proyecto1_programacion3.proyecto_app.model.Barberia;
-import proyecto1_programacion3.proyecto_app.model.Barbero;
-import proyecto1_programacion3.proyecto_app.model.Cliente;
+import proyecto1_programacion3.proyecto_app.dto.GestionCitaDto;
+import proyecto1_programacion3.proyecto_app.model.*;
 import proyecto1_programacion3.proyecto_app.model.builder.BarberoBuilder;
 import proyecto1_programacion3.proyecto_app.model.builder.ClienteBuilder;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModelFactory {
     private static ModelFactory modelFactory;
     private Barberia barberia;
 
-    private ModelFactory(){
+    private ModelFactory() {
         barberia = new Barberia();
         initializeData();
     }
@@ -39,22 +41,20 @@ public class ModelFactory {
                 .cedula("15467537")
                 .correo("juanli86@gmail.com")
                 .telefono("315-123-4567")
-                .barbero(barbero1)
                 .build();
-        barbero1.setCliente(cliente1);
+
 
         Barbero barbero2 = new BarberoBuilder()
                 .nombre("Andrés Pérez")
                 .cedula("49827365")
                 .build();
+
         Cliente cliente2 = new ClienteBuilder()
                 .nombre("Carlos Gómez")
                 .cedula("76492034")
                 .correo("carlosgomez@example.com")
                 .telefono("300-765-4321")
-                .barbero(barbero2)
                 .build();
-        barbero2.setCliente(cliente2);
 
         Barbero barbero3 = new BarberoBuilder()
                 .nombre("Jorge Martínez")
@@ -65,9 +65,7 @@ public class ModelFactory {
                 .cedula("23894716")
                 .correo("pedromartinez@example.com")
                 .telefono("317-890-1234")
-                .barbero(barbero3)
                 .build();
-        barbero3.setCliente(cliente3);
 
         Barbero barbero4 = new BarberoBuilder()
                 .nombre("Miguel Ángel Martínez")
@@ -78,9 +76,7 @@ public class ModelFactory {
                 .cedula("19283746")
                 .correo("sergiomoreno@example.com")
                 .telefono("311-234-5678")
-                .barbero(barbero4)
                 .build();
-        barbero4.setCliente(cliente4);
 
         Barbero barbero5 = new BarberoBuilder()
                 .nombre("Ricardo Gómez")
@@ -91,9 +87,7 @@ public class ModelFactory {
                 .cedula("47382910")
                 .correo("natalia.rodriguez@example.com")
                 .telefono("312-345-6789")
-                .barbero(barbero5)
                 .build();
-        barbero5.setCliente(cliente5);
 
         Barbero barbero6 = new BarberoBuilder()
                 .nombre("Luis Fernando Sánchez")
@@ -104,9 +98,7 @@ public class ModelFactory {
                 .cedula("98374521")
                 .correo("luis.gomez@example.com")
                 .telefono("318-765-4321")
-                .barbero(barbero6)
                 .build();
-        barbero6.setCliente(cliente6);
 
         Barbero barbero7 = new BarberoBuilder()
                 .nombre("Antonio Torres")
@@ -117,9 +109,7 @@ public class ModelFactory {
                 .cedula("28475639")
                 .correo("jorge.salazar@example.com")
                 .telefono("315-678-9012")
-                .barbero(barbero7)
                 .build();
-        barbero7.setCliente(cliente7);
 
         Barbero barbero8 = new BarberoBuilder()
                 .nombre("David Guzmán")
@@ -130,9 +120,7 @@ public class ModelFactory {
                 .cedula("73829164")
                 .correo("andres.morales@example.com")
                 .telefono("300-456-7890")
-                .barbero(barbero8)
                 .build();
-        barbero8.setCliente(cliente8);
 
         Barbero barbero9 = new BarberoBuilder()
                 .nombre("Tomás Díaz")
@@ -143,23 +131,69 @@ public class ModelFactory {
                 .cedula("91827364")
                 .correo("daniel.arevalo@example.com")
                 .telefono("317-890-5678")
-                .barbero(barbero9)
                 .build();
-        barbero9.setCliente(cliente9);
 
         Barbero barbero10 = new BarberoBuilder()
                 .nombre("Víctor Gómez")
                 .cedula("49382765")
                 .build();
+
         Cliente cliente10 = new ClienteBuilder()
                 .nombre("Felipe Silva")
                 .cedula("62738491")
                 .correo("felipe.silva@example.com")
                 .telefono("311-789-0123")
-                .barbero(barbero10)
                 .build();
-        barbero10.setCliente(cliente10);
 
+        GestionCita gestionCita1 = new GestionCita();
+        gestionCita1.setCliente(cliente1);
+        gestionCita1.setBarbero(barbero1);
+        gestionCita1.setFechaCita(LocalDate.of(2024, 8, 03));
+        gestionCita1.setTipoServicio(TipoServicio.BARBA);
+        gestionCita1.setValorCita(TipoServicio.BARBA.getValor());
+        gestionCita1.setHoraCita(LocalTime.of(03, 20));
+
+        GestionCita gestionCita2 = new GestionCita();
+        gestionCita2.setCliente(cliente2);
+        gestionCita2.setBarbero(barbero2);
+        gestionCita2.setFechaCita(LocalDate.of(2024, 8, 03));
+        gestionCita2.setTipoServicio(TipoServicio.CABELLO);
+        gestionCita2.setValorCita(TipoServicio.CABELLO.getValor());
+        gestionCita2.setHoraCita(LocalTime.of(04, 30));
+
+        GestionCita gestionCita3 = new GestionCita();
+        gestionCita3.setCliente(cliente3);
+        gestionCita3.setBarbero(barbero3);
+        gestionCita3.setFechaCita(LocalDate.of(2024, 8, 05));
+        gestionCita3.setTipoServicio(TipoServicio.CABELLO);
+        gestionCita3.setValorCita(TipoServicio.CABELLO.getValor());
+        gestionCita3.setHoraCita(LocalTime.of(02, 30));
+
+        GestionCita gestionCita4 = new GestionCita();
+        gestionCita4.setCliente(cliente4);
+        gestionCita4.setBarbero(barbero4);
+        gestionCita4.setFechaCita(LocalDate.of(2024, 8, 05));
+        gestionCita4.setTipoServicio(TipoServicio.MASCARILLA);
+        gestionCita4.setValorCita(TipoServicio.MASCARILLA.getValor());
+        gestionCita4.setHoraCita(LocalTime.of(03, 30));
+
+        GestionCita gestionCita5 = new GestionCita();
+        gestionCita5.setCliente(cliente5);
+        gestionCita5.setBarbero(barbero5);
+        gestionCita5.setFechaCita(LocalDate.of(2024, 8, 05));
+        gestionCita5.setTipoServicio(TipoServicio.CEJAS);
+        gestionCita5.setValorCita(TipoServicio.CEJAS.getValor());
+        gestionCita5.setHoraCita(LocalTime.of(05, 30));
+
+
+        barberia.getListaGestionCitas().add(gestionCita1);
+        barberia.getListaGestionCitas().add(gestionCita2);
+        barberia.getListaGestionCitas().add(gestionCita3);
+        barberia.getListaGestionCitas().add(gestionCita4);
+        barberia.getListaGestionCitas().add(gestionCita5);
+
+
+//Se agrega a la lista los clientes
         barberia.getListaClientes().add(cliente1);
         barberia.getListaClientes().add(cliente2);
         barberia.getListaClientes().add(cliente3);
@@ -171,8 +205,20 @@ public class ModelFactory {
         barberia.getListaClientes().add(cliente9);
         barberia.getListaClientes().add(cliente10);
 
-    }
+        //Se agrega a la lista los barberos
+        barberia.getListaBarberos().add(barbero1);
+        barberia.getListaBarberos().add(barbero2);
+        barberia.getListaBarberos().add(barbero3);
+        barberia.getListaBarberos().add(barbero4);
+        barberia.getListaBarberos().add(barbero5);
+        barberia.getListaBarberos().add(barbero6);
+        barberia.getListaBarberos().add(barbero7);
+        barberia.getListaBarberos().add(barbero8);
+        barberia.getListaBarberos().add(barbero9);
+        barberia.getListaBarberos().add(barbero10);
 
+
+    }
 
 
     public List<Cliente> getListaClientes() {
@@ -180,7 +226,7 @@ public class ModelFactory {
     }
 
     public boolean crearCliente(Cliente cliente) {
-      return barberia.crearCliente(cliente);
+        return barberia.crearCliente(cliente);
     }
 
     public boolean eliminarCliente(Cliente clienteSeleccionado) {
@@ -189,5 +235,35 @@ public class ModelFactory {
 
     public boolean actualizarCliente(Cliente clienteSeleccionado, Cliente clienteActualizado) {
         return barberia.actualizarCliente(clienteSeleccionado, clienteActualizado);
+    }
+
+    public List<GestionCitaDto> getListaGestionCitas() {
+        List<GestionCita> listaGestionCitas = barberia.getListaGestionCitas();
+        List<GestionCitaDto> listaGestionCitasDto = new ArrayList<>();
+
+        for(GestionCita gestionCita: listaGestionCitas){
+            listaGestionCitasDto.add(buildGestionCitaDto(gestionCita));
+        }
+        return listaGestionCitasDto;
+    }
+
+    private GestionCitaDto buildGestionCitaDto(GestionCita gestionCita) {
+        return new GestionCitaDto(
+                gestionCita.getCliente().getNombre(),
+                gestionCita.getCliente().getTelefono(),
+                gestionCita.getBarbero().getNombre(),
+                gestionCita.getFechaCita().toString(),
+                gestionCita.getHoraCita().toString(),
+                String.valueOf(gestionCita.getValorCita()),
+                gestionCita.getTipoServicio().toString()
+        );
+    }
+
+    public List<Barbero> getListaBarberos() {
+        return barberia.getListaBarberos();
+    }
+
+    public boolean agregarCita(GestionCita nuevaCita) {
+        return barberia.agregarCita(nuevaCita);
     }
 }

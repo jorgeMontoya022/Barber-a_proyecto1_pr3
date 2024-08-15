@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="547.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto1_programacion3.proyecto_app.viewController.GestionCitaViewController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#080e48" height="33.0" layoutX="14.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="635.0" />
+      <Label layoutX="31.0" layoutY="20.0" text="GESTIÓN DE CITAS" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbCliente" layoutX="102.0" layoutY="68.0" prefWidth="150.0" promptText="Cliente" />
+      <ComboBox fx:id="cbBarbero" layoutX="390.0" layoutY="68.0" prefWidth="150.0" promptText="Barbero" />
+      <DatePicker fx:id="DpFechaCita" layoutX="389.0" layoutY="132.0" prefHeight="25.0" prefWidth="150.0" promptText="Fecha de la cita" />
+      <ComboBox fx:id="cbTipoCita" layoutX="102.0" layoutY="145.0" prefWidth="150.0" promptText="Tipo de cita" />
+      <TextField fx:id="txtHoraCita" layoutX="390.0" layoutY="157.0" promptText="Ingresar hora" />
+      <Separator layoutX="8.0" layoutY="208.0" prefHeight="0.0" prefWidth="647.0" />
+      <Button fx:id="onLimpiar" layoutX="122.0" layoutY="224.0" mnemonicParsing="false" onAction="#onLimpiarDatos" style="-fx-background-color: #080e48;" text="Limpiar" textFill="WHITE" />
+      <Button fx:id="onAgendarCita" layoutX="293.0" layoutY="224.0" mnemonicParsing="false" onAction="#onAgendarCita" style="-fx-background-color: #080e48;" text="Agregar" textFill="#f6f6f6" />
+      <Button fx:id="onActualizarCliente" layoutX="472.0" layoutY="224.0" mnemonicParsing="false" onAction="#onActualizar" style="-fx-background-color: #080e48;" text="Actualizar" textFill="WHITE" />
+      <TableView fx:id="tableCitas" layoutX="25.0" layoutY="265.0" prefHeight="221.0" prefWidth="614.0">
+        <columns>
+          <TableColumn fx:id="tcNombreCliente" prefWidth="94.0" text="Cliente" />
+            <TableColumn fx:id="tcTelefono" prefWidth="115.33328247070312" text="Telefono Cliente" />
+          <TableColumn fx:id="tcNombreBarbero" prefWidth="86.00006103515625" text="Barbero" />
+            <TableColumn fx:id="tcTipoCita" prefWidth="90.0" text="Tipo de cita" />
+            <TableColumn fx:id="tcValor" prefWidth="75.0" text="Valor" />
+            <TableColumn fx:id="tcFecha" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="tcHora" prefWidth="75.0" text="Hora" />
+        </columns>
+      </TableView>
+      <Button fx:id="onEliminarCliente" layoutX="306.0" layoutY="502.0" mnemonicParsing="false" onAction="#onEliminar" style="-fx-background-color: #080e48;" text="Eliminar" textFill="WHITE" />
+      <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="598.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

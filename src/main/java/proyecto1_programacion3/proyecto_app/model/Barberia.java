@@ -2,6 +2,8 @@ package proyecto1_programacion3.proyecto_app.model;
 
 import proyecto1_programacion3.proyecto_app.services.IGestionCliente;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +76,23 @@ public class Barberia implements IGestionCliente {
         if(index!=-1){
             getListaClientes().set(index, clienteActualizado);
             return true;
+        }
+        return false;
+    }
+
+    public boolean agregarCita(GestionCita nuevaCita) {
+        if (nuevaCita != null && !citaExiste(nuevaCita.getFechaCita(), nuevaCita.getHoraCita(), nuevaCita.getBarbero())) {
+            getListaGestionCitas().add(nuevaCita);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean citaExiste(LocalDate fechaCita, LocalTime horaCita, Barbero barbero) {
+        for(GestionCita gestionCita: getListaGestionCitas()) {
+            if(gestionCita.getFechaCita().equals(fechaCita) && gestionCita.getHoraCita().equals(horaCita) && gestionCita.getBarbero().equals(barbero)){
+                return true;
+            }
         }
         return false;
     }

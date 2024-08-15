@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class BarberiaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GestionCliente.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(BarberiaApplication.class.getResource("Barberia.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("BARBERÍA VIBRAS");
         stage.setScene(scene);

@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                proyecto1_programacion3.proyecto_app/proyecto1_programacion3.proyecto_app.HelloApplication
+                                proyecto1_programacion3.proyecto_app/proyecto1_programacion3.proyecto_app.BarberiaApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
