@@ -270,4 +270,8 @@ public class ModelFactory {
     public boolean eliminarCita(GestionCita gestionCita) {
         return barberia.eliminarCita(gestionCita);
     }
+
+    public boolean actualizarCita(GestionCita gestionCita, GestionCita gestionCitaActualizada) {
+        return barberia.actualizarCita(gestionCita, gestionCitaActualizada);
+    }
 }

@@ -88,8 +88,11 @@ public class GestionCitaViewController {
 
     @FXML
     void onActualizar(ActionEvent event) {
+        actualizarCita();
 
     }
+
+
 
     @FXML
     void onAgendarCita(ActionEvent event) {
@@ -237,6 +240,31 @@ public class GestionCitaViewController {
         }else{
             mostrarMensaje("Notificación Gestión Cita", "Ninguna cita Seleccionada",
                     "Debe seleccionar una cita para eliminar", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void actualizarCita() {
+        if(gestionCitaSeleccionada!=null) {
+            GestionCita gestionCita = gestionCitaSeleccionada.toGestionCita();
+            GestionCita gestionCitaActualizada = buildDataGestionCita();
+            boolean suceso = gestionCitaController.actualizarCita(gestionCita, gestionCitaActualizada);
+            if(suceso){
+                int index = listaGestionCitas.indexOf(gestionCitaSeleccionada);
+                if(index!=-1){
+                    GestionCitaDto updateDto = GestionCitaDto.fromGestionCita(gestionCitaActualizada);
+                    listaGestionCitas.set(index, updateDto);
+                    refrescarTabla();
+                }
+                mostrarMensaje("Notificación Cita", "Cita actualizado",
+                        "La cita ha sido actualizada con éxito", Alert.AlertType.INFORMATION);
+                limpiarDatos();
+            }else{
+                mostrarMensaje("Error", "Actualización fallida",
+                        "No se pudo actualizar la cita.", Alert.AlertType.ERROR);
+            }
+        }else {
+            mostrarMensaje("Error", "Selección requerida",
+                    "Debe seleccionar un cliente para actualizar.", Alert.AlertType.WARNING);
         }
     }
 

@@ -39,10 +39,11 @@ public class Barberia implements IGestionCliente {
     public void setListaGestionCitas(List<GestionCita> listaGestionCitas) {
         this.listaGestionCitas = listaGestionCitas;
     }
+
     @Override
     public boolean crearCliente(Cliente cliente) {
         Cliente clienteEncontrado = buscarCliente(cliente.getCedula());
-        if(clienteEncontrado == null) {
+        if (clienteEncontrado == null) {
             getListaClientes().add(cliente);
             return true;
         }
@@ -50,8 +51,8 @@ public class Barberia implements IGestionCliente {
     }
 
     private Cliente buscarCliente(String cedula) {
-        for (Cliente cliente: getListaClientes()) {
-            if(cliente.getCedula().equalsIgnoreCase(cedula)) {
+        for (Cliente cliente : getListaClientes()) {
+            if (cliente.getCedula().equalsIgnoreCase(cedula)) {
                 return cliente;
             }
         }
@@ -60,9 +61,9 @@ public class Barberia implements IGestionCliente {
 
     @Override
     public boolean eliminarCliente(Cliente clienteSeleccionado) {
-        if(clienteSeleccionado != null){
+        if (clienteSeleccionado != null) {
             int index = getListaClientes().indexOf(clienteSeleccionado);
-            if (index !=-1) {
+            if (index != -1) {
                 getListaClientes().remove(index);
                 return true;
             }
@@ -73,7 +74,7 @@ public class Barberia implements IGestionCliente {
     @Override
     public boolean actualizarCliente(Cliente clienteSeleccionado, Cliente clienteActualizado) {
         int index = getListaClientes().indexOf(clienteSeleccionado);
-        if(index!=-1){
+        if (index != -1) {
             getListaClientes().set(index, clienteActualizado);
             return true;
         }
@@ -89,8 +90,8 @@ public class Barberia implements IGestionCliente {
     }
 
     private boolean citaExiste(LocalDate fechaCita, LocalTime horaCita, Barbero barbero) {
-        for(GestionCita gestionCita: getListaGestionCitas()) {
-            if(gestionCita.getFechaCita().equals(fechaCita) && gestionCita.getHoraCita().equals(horaCita) && gestionCita.getBarbero().equals(barbero)){
+        for (GestionCita gestionCita : getListaGestionCitas()) {
+            if (gestionCita.getFechaCita().equals(fechaCita) && gestionCita.getHoraCita().equals(horaCita) && gestionCita.getBarbero().equals(barbero)) {
                 return true;
             }
         }
@@ -99,14 +100,26 @@ public class Barberia implements IGestionCliente {
 
     public boolean eliminarCita(GestionCita gestionCita) {
         if (gestionCita != null) {
-            for(GestionCita cita: getListaGestionCitas()) {
-                if(cita.getCliente().equals(gestionCita.getCliente())){
+            for (GestionCita cita : getListaGestionCitas()) {
+                if (cita.getCliente().equals(gestionCita.getCliente())) {
                     return true;
                 }
             }
 
         }
 
+        return false;
+    }
+
+    public boolean actualizarCita(GestionCita gestionCita, GestionCita gestionCitaActualizada) {
+
+        for (int i = 0; i < getListaGestionCitas().size(); i++) {
+            GestionCita actualCita = getListaGestionCitas().get(i);
+            if (actualCita.getCliente().getNombre().equals(gestionCita.getCliente().getNombre())) {
+                getListaGestionCitas().set(i, gestionCitaActualizada);
+                return true;
+            }
+        }
         return false;
     }
 }
