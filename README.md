@@ -7,11 +7,11 @@ Desarrollar un sistema informático que permita manejar eficientemente todas las
 
 ### Módulos del Sistema
 1. Gestión de Clientes
-Funcionalidades:
+#### Funcionalidades:
 Crear, editar, eliminar y mantener actualizada la información de los clientes.
 Detalles a incluir: nombre, ID, teléfono y correo electrónico.
 2. Gestión de Barberos
-Funcionalidades:
+#### Funcionalidades:
 Crear, editar, eliminar y mantener actualizada la información de los barberos.
 Asegurar que la información esté siempre al día.
 3. Gestión de Citas
