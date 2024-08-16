@@ -24,6 +24,7 @@ public class GestionCitaViewController {
     GestionCitaController gestionCitaController;
     ObservableList<GestionCitaDto> listaGestionCitas = FXCollections.observableArrayList();
     FilteredList<GestionCitaDto> gestionCitaFilteredList;
+    GestionCitaDto gestionCitaSeleccionada;
 
     @FXML
     private ResourceBundle resources;
@@ -97,8 +98,6 @@ public class GestionCitaViewController {
     }
 
 
-
-
     @FXML
     void onEliminar(ActionEvent event) {
 
@@ -116,7 +115,7 @@ public class GestionCitaViewController {
         initView();
         cargarDatos();
 
-        cbTipoCita.valueProperty().addListener((observable, oldValue, newValue) ->{
+        cbTipoCita.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 double valor = newValue.getValor();
             }
@@ -126,14 +125,14 @@ public class GestionCitaViewController {
     }
 
 
-
-
     private void initView() {
         initDataBinding();
         getListaGestionCitas();
         tableCitas.getItems().clear();
         tableCitas.setItems(listaGestionCitas);
+        listenerSelection();
     }
+
 
     private void initDataBinding() {
         tcNombreCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombreCliente()));
@@ -150,6 +149,49 @@ public class GestionCitaViewController {
         listaGestionCitas.addAll(gestionCitaController.getListaGestionCitas());
     }
 
+    private void listenerSelection() {
+        tableCitas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            gestionCitaSeleccionada = newSelection;
+            mostrarInformacion(gestionCitaSeleccionada);
+        });
+    }
+
+    private void mostrarInformacion(GestionCitaDto gestionCitaSeleccionada) {
+        if (gestionCitaSeleccionada != null) {
+            cbCliente.setItems(FXCollections.observableArrayList(gestionCitaController.getListaClientes()));
+            cbBarbero.setItems(FXCollections.observableArrayList(gestionCitaController.getListaBarberos()));
+            cbTipoCita.setItems(FXCollections.observableArrayList(TipoServicio.values()));
+            DpFechaCita.setValue(LocalDate.parse(gestionCitaSeleccionada.fechaCita()));
+            txtHoraCita.setText(gestionCitaSeleccionada.horaCita());
+
+            // Selección del cliente
+            cbCliente.getSelectionModel().select(
+                    cbCliente.getItems().stream()
+                            .filter(cliente -> cliente.getNombre().equals(gestionCitaSeleccionada.nombreCliente()))
+                            .findFirst()
+                            .orElse(null)
+            );
+
+
+            // Selección del barbero
+            cbBarbero.getSelectionModel().select(
+                    cbBarbero.getItems().stream()
+                            .filter(barbero -> barbero.getNombre().equals(gestionCitaSeleccionada.nombreBarbero()))
+                            .findFirst()
+                            .orElse(null)
+            );
+
+            // Selección del tipo de cita
+            cbTipoCita.getSelectionModel().select(
+                    cbTipoCita.getItems().stream()
+                            .filter(tipoServicio -> tipoServicio.name().equals(gestionCitaSeleccionada.tipoCita()))
+                            .findFirst()
+                            .orElse(null)
+            );
+
+        }
+    }
+
     private void cargarDatos() {
         cbCliente.setItems(FXCollections.observableArrayList(gestionCitaController.getListaClientes()));
         cbBarbero.setItems(FXCollections.observableArrayList(gestionCitaController.getListaBarberos()));
@@ -157,18 +199,18 @@ public class GestionCitaViewController {
     }
 
     private void agendarCita() {
-        if(validarFormulario()) {
+        if (validarFormulario()) {
             GestionCita nuevaCita = buildDataGestionCita();
             boolean suceso = gestionCitaController.agregarCita(nuevaCita);
-            if(suceso){
+            if (suceso) {
                 mostrarMensaje("Éxito", "Cita Agregada", "La cita se ha agregado exitosamente.", Alert.AlertType.INFORMATION);
                 limpiarDatos();
                 refrescarTabla();
             } else {
-                mostrarMensaje("Error", "Cita no Agregada","Esa hora ya está agendada", Alert.AlertType.ERROR);
+                mostrarMensaje("Error", "Cita no Agregada", "Esa hora ya está agendada", Alert.AlertType.ERROR);
             }
         } else {
-            mostrarMensaje("Error", "Datos invalidos","Por favor complete todos los campos requeridos con datos válidos.", Alert.AlertType.ERROR);
+            mostrarMensaje("Error", "Datos invalidos", "Por favor complete todos los campos requeridos con datos válidos.", Alert.AlertType.ERROR);
         }
     }
 
@@ -178,15 +220,15 @@ public class GestionCitaViewController {
         TipoServicio tipoServicio = cbTipoCita.getSelectionModel().getSelectedItem();
         LocalDate fechaCita = DpFechaCita.getValue();
         LocalTime horaCita = LocalTime.parse(txtHoraCita.getText());
-        double valorCita = tipoServicio!=null ? tipoServicio.getValor() : 0.0;
-        return new GestionCita(barbero, cliente, tipoServicio, fechaCita,horaCita, valorCita);
+        double valorCita = tipoServicio != null ? tipoServicio.getValor() : 0.0;
+        return new GestionCita(barbero, cliente, tipoServicio, fechaCita, horaCita, valorCita);
 
 
     }
 
     private boolean validarFormulario() {
-        if(cbCliente.getSelectionModel().getSelectedItem() == null || cbBarbero.getSelectionModel().getSelectedItem() == null ||
-        cbTipoCita.getSelectionModel().getSelectedItem() == null || txtHoraCita.getText().isEmpty() || DpFechaCita.getValue()==null) {
+        if (cbCliente.getSelectionModel().getSelectedItem() == null || cbBarbero.getSelectionModel().getSelectedItem() == null ||
+                cbTipoCita.getSelectionModel().getSelectedItem() == null || txtHoraCita.getText().isEmpty() || DpFechaCita.getValue() == null) {
             return false;
         }
         return true;
@@ -214,9 +256,6 @@ public class GestionCitaViewController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
-
 
 
 }
