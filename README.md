@@ -22,5 +22,5 @@ Asegurar que la información esté siempre al día.
 ### Implementación:
 1. Instancias Únicas: Es esencial que ciertos componentes del sistema sean instancias únicas para evitar inconsistencias y asegurar una gestión centralizada.
 2. Persistencia de Datos: El sistema debe almacenar y gestionar los datos de manera persistente.
-3.Interfaz Amigable: Ofrecer una interfaz fácil de usar.
+3. Interfaz Amigable: Ofrecer una interfaz fácil de usar.
 4. Validación de Datos: Contar con mecanismos de validación de datos para garantizar la integridad de la información.
