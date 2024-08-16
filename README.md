@@ -6,16 +6,16 @@ La barbería “Vibras” ha decidido modernizar su gestión administrativa debi
 Desarrollar un sistema informático que permita manejar eficientemente todas las operaciones mediante tres módulos principales: gestión de clientes, gestión de barberos y gestión de citas.
 
 ### Módulos del Sistema
-1. Gestión de Clientes
-#### Funcionalidades:
+#### 1. Gestión de Clientes
+Funcionalidades:
 Crear, editar, eliminar y mantener actualizada la información de los clientes.
 Detalles a incluir: nombre, ID, teléfono y correo electrónico.
-2. Gestión de Barberos
-#### Funcionalidades:
+#### 2. Gestión de Barberos
+Funcionalidades:
 Crear, editar, eliminar y mantener actualizada la información de los barberos.
 Asegurar que la información esté siempre al día.
-3. Gestión de Citas
-### Funcionalidades:
+#### 3. Gestión de Citas
+Funcionalidades:
 1. Coordinar de manera eficiente las citas entre los clientes y barberos.
 1. Seleccionar el cliente y el barbero asignados a cada cita.
 3. Incluir detalles como fecha, hora, valor y tipo de servicio solicitado.
