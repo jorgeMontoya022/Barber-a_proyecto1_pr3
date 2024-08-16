@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import proyecto1_programacion3.proyecto_app.model.Barbero;
 
 public class BarberoViewController {
 
@@ -23,7 +24,7 @@ public class BarberoViewController {
     private TableColumn<?, ?> tcCedulaBarbero;
 
     @FXML
-    private TableColumn<?, ?> tcNombreBarbero;
+    private TableColumn<?,?> tcNombreBarbero;
 
     @FXML
     private TextField txtCedulaBarbero;
