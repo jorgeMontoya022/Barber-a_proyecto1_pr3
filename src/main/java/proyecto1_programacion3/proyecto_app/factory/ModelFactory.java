@@ -266,4 +266,8 @@ public class ModelFactory {
     public boolean agregarCita(GestionCita nuevaCita) {
         return barberia.agregarCita(nuevaCita);
     }
+
+    public boolean eliminarCita(GestionCita gestionCita) {
+        return barberia.eliminarCita(gestionCita);
+    }
 }

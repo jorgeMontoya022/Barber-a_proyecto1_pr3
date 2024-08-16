@@ -96,4 +96,12 @@ public class Barberia implements IGestionCliente {
         }
         return false;
     }
+
+    public boolean eliminarCita(GestionCita gestionCita) {
+        if (gestionCita != null) {
+            return getListaGestionCitas().removeIf(cita -> cita.getCliente().equals(gestionCita.getCliente()));
+
+        }
+        return false;
+    }
 }
