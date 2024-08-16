@@ -14,6 +14,7 @@ public class BarberiaApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("BARBERÍA VIBRAS");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
