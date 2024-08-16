@@ -31,4 +31,12 @@ public class GestionCitaController {
     public boolean agregarCita(GestionCita nuevaCita) {
         return modelFactory.agregarCita(nuevaCita);
     }
+
+    public boolean eliminarCita(GestionCita gestionCita) {
+        return modelFactory.eliminarCita(gestionCita);
+    }
+
+    public boolean actualizarCita(GestionCita gestionCita, GestionCita gestionCitaActualizada) {
+        return modelFactory.actualizarCita(gestionCita, gestionCitaActualizada);
+    }
 }

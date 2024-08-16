@@ -4,6 +4,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -87,8 +88,11 @@ public class GestionCitaViewController {
 
     @FXML
     void onActualizar(ActionEvent event) {
+        actualizarCita();
 
     }
+
+
 
     @FXML
     void onAgendarCita(ActionEvent event) {
@@ -100,8 +104,11 @@ public class GestionCitaViewController {
 
     @FXML
     void onEliminar(ActionEvent event) {
+        eliminarGestionCita();
 
     }
+
+
 
     @FXML
     void onLimpiarDatos(ActionEvent event) {
@@ -214,6 +221,53 @@ public class GestionCitaViewController {
         }
     }
 
+    private void eliminarGestionCita() {
+        if(gestionCitaSeleccionada !=null){
+            boolean confirmacion = mostrarMensajeConfirmacion("¿ Está seguro de eliminar la cita?");
+                if(confirmacion) {
+                    GestionCita gestionCita = buildDataGestionCita();
+                    boolean suceso = gestionCitaController.eliminarCita(gestionCita);
+                    if(suceso) {
+                        listaGestionCitas.remove(gestionCitaSeleccionada);
+                        mostrarMensaje("Notificación Gestion Cita", "Cita eliminada con éxito", "La cita fue eliminado exitosamente", Alert.AlertType.INFORMATION);
+                        limpiarDatos();
+                    }else{
+                        mostrarMensaje("Notificación Gestion Cita", "Error al eliminar",
+                                "No se pudo eliminar el cliente", Alert.AlertType.ERROR);
+                    }
+                }
+
+        }else{
+            mostrarMensaje("Notificación Gestión Cita", "Ninguna cita Seleccionada",
+                    "Debe seleccionar una cita para eliminar", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void actualizarCita() {
+        if(gestionCitaSeleccionada!=null) {
+            GestionCita gestionCita = gestionCitaSeleccionada.toGestionCita();
+            GestionCita gestionCitaActualizada = buildDataGestionCita();
+            boolean suceso = gestionCitaController.actualizarCita(gestionCita, gestionCitaActualizada);
+            if(suceso){
+                int index = listaGestionCitas.indexOf(gestionCitaSeleccionada);
+                if(index!=-1){
+                    GestionCitaDto updateDto = GestionCitaDto.fromGestionCita(gestionCitaActualizada);
+                    listaGestionCitas.set(index, updateDto);
+                    refrescarTabla();
+                }
+                mostrarMensaje("Notificación Cita", "Cita actualizado",
+                        "La cita ha sido actualizada con éxito", Alert.AlertType.INFORMATION);
+                limpiarDatos();
+            }else{
+                mostrarMensaje("Error", "Actualización fallida",
+                        "No se pudo actualizar la cita.", Alert.AlertType.ERROR);
+            }
+        }else {
+            mostrarMensaje("Error", "Selección requerida",
+                    "Debe seleccionar un cliente para actualizar.", Alert.AlertType.WARNING);
+        }
+    }
+
     private GestionCita buildDataGestionCita() {
         Cliente cliente = cbCliente.getSelectionModel().getSelectedItem();
         Barbero barbero = cbBarbero.getSelectionModel().getSelectedItem();
@@ -247,6 +301,19 @@ public class GestionCitaViewController {
         cbCliente.getSelectionModel().clearSelection();
         DpFechaCita.setValue(null);
         txtHoraCita.setText("");
+    }
+
+    private boolean mostrarMensajeConfirmacion(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmación");
+        alert.setContentText(message);
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void mostrarMensaje(String title, String header, String content, Alert.AlertType alertType) {
