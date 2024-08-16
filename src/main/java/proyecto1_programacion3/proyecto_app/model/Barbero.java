@@ -19,4 +19,6 @@ public class Barbero extends Persona {
     public String toString() {
         return getNombre();
     }
+
+
 }

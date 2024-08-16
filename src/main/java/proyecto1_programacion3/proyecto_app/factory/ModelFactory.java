@@ -274,4 +274,16 @@ public class ModelFactory {
     public boolean actualizarCita(GestionCita gestionCita, GestionCita gestionCitaActualizada) {
         return barberia.actualizarCita(gestionCita, gestionCitaActualizada);
     }
+
+    public boolean crearBarbero(Barbero barbero) {
+        return barberia.crearBarbero(barbero);
+    }
+
+    public boolean eliminarBarbero(Barbero barberoSeleccionado) {
+        return barberia.eliminarBarbero(barberoSeleccionado);
+    }
+
+    public boolean actualizarBarbero(Barbero barberoSeleccionado, Barbero barberoActualizado) {
+        return barberia.actualizarBarbero(barberoSeleccionado, barberoActualizado);
+    }
 }

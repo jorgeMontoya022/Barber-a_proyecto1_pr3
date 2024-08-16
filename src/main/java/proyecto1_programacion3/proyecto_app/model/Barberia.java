@@ -122,4 +122,44 @@ public class Barberia implements IGestionCliente {
         }
         return false;
     }
+
+    public boolean crearBarbero(Barbero barbero) {
+        Barbero barberoEncontrado = buscarBarbero(barbero.getCedula());
+        if (barberoEncontrado != null) {
+            return false;
+
+        } else {
+            getListaBarberos().add(barbero);
+            return true;
+        }
+    }
+
+    private Barbero buscarBarbero(String cedula) {
+        for (Barbero barbero : getListaBarberos()) {
+            if (barbero.getCedula().equalsIgnoreCase(cedula)) {
+                return barbero;
+            }
+        }
+        return null;
+    }
+
+    public boolean eliminarBarbero(Barbero barberoSeleccionado) {
+        if (barberoSeleccionado != null) {
+            int index = getListaBarberos().indexOf(barberoSeleccionado);
+            if (index != -1) {
+                getListaBarberos().remove(index);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean actualizarBarbero(Barbero barberoSeleccionado, Barbero barberoActualizado) {
+        int index = getListaBarberos().indexOf(barberoSeleccionado);
+        if (index != -1) {
+            getListaBarberos().set(index, barberoActualizado);
+            return true;
+        }
+        return false;
+    }
 }
