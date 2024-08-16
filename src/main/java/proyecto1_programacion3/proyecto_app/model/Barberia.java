@@ -99,9 +99,14 @@ public class Barberia implements IGestionCliente {
 
     public boolean eliminarCita(GestionCita gestionCita) {
         if (gestionCita != null) {
-            return getListaGestionCitas().removeIf(cita -> cita.getCliente().equals(gestionCita.getCliente()));
+            for(GestionCita cita: getListaGestionCitas()) {
+                if(cita.getCliente().equals(gestionCita.getCliente())){
+                    return true;
+                }
+            }
 
         }
+
         return false;
     }
 }

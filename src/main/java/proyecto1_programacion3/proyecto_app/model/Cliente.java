@@ -9,6 +9,8 @@ public class Cliente extends Persona {
         super(nombre, cedula);
     }
 
+
+
     public Cliente(String nombre, String cedula, String correo, String telefono, Barbero barbero) {
         super(nombre, cedula);
         this.correo = correo;
