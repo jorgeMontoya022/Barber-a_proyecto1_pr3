@@ -27,4 +27,4 @@ Funcionalidades:
 
 ## Autores:
 ### Jorge William Montoya  - [@jorgeMontoya022](https://github.com/jorgeMontoya022)
-### Valentina Porras - [@ValentinaPs09](https://github.com/ValentinaPs09)
+### Valentina Porras - [@Valentinaps09](https://github.com/Valentinaps09)
