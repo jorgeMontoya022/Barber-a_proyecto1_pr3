@@ -59,7 +59,7 @@ public class ClienteViewController {
 
     @FXML
     private TextField txtTelefono;
-    
+
     @FXML
     void onActualizar(ActionEvent event) {
         actualizarUsuario();
