@@ -24,3 +24,7 @@ Funcionalidades:
 2. Persistencia de Datos: El sistema debe almacenar y gestionar los datos de manera persistente.
 3. Interfaz Amigable: Ofrecer una interfaz fácil de usar.
 4. Validación de Datos: Contar con mecanismos de validación de datos para garantizar la integridad de la información.
+
+## Autores:
+### Jorge William Montoya  - [@jorgeMontoya022](https://github.com/jorgeMontoya022)
+### Valentina Porras - [@Valentinaps09](https://github.com/Valentinaps09)
