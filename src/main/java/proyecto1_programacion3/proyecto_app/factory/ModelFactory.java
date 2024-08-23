@@ -2,8 +2,8 @@ package proyecto1_programacion3.proyecto_app.factory;
 
 import proyecto1_programacion3.proyecto_app.dto.GestionCitaDto;
 import proyecto1_programacion3.proyecto_app.model.*;
-import proyecto1_programacion3.proyecto_app.model.builder.BarberoBuilder;
-import proyecto1_programacion3.proyecto_app.model.builder.ClienteBuilder;
+import proyecto1_programacion3.proyecto_app.builder.BarberoBuilder;
+import proyecto1_programacion3.proyecto_app.builder.ClienteBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,14 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelFactory {
+    // Instancia única de la fábrica, siguiendo el patrón Singleton
     private static ModelFactory modelFactory;
     private Barberia barberia;
 
+    // Constructor privado para evitar la instanciación externa y garantizar el patrón Singleton
     private ModelFactory() {
         barberia = new Barberia();
-        initializeData();
+        initializeData(); // Inicializa los datos simulados para la barbería
     }
 
+    // Método para obtener la única instancia de la fábrica
+    // Esto es necesario para garantizar que solo haya una instancia de ModelFactory en todo el sistema
     public static ModelFactory getInstance() {
         if (modelFactory == null) {
             modelFactory = new ModelFactory();
@@ -26,11 +30,16 @@ public class ModelFactory {
         return modelFactory;
     }
 
+    // Método privado para inicializar datos de ejemplo
+    // Se invoca en el constructor para prellenar la barbería con datos simulados
     private void initializeData() {
         initCliente();
     }
 
+    // Método privado para inicializar clientes y barberos simulados
+    // Esto es útil para probar la funcionalidad sin necesidad de un backend completo
     private void initCliente() {
+        // Se crean varios barberos y clientes usando el patrón Builder para mayor flexibilidad
         Barbero barbero1 = new BarberoBuilder()
                 .nombre("Felipe Monrroy")
                 .cedula("45789100")
@@ -42,7 +51,6 @@ public class ModelFactory {
                 .correo("juanli86@gmail.com")
                 .telefono("315-123-4567")
                 .build();
-
 
         Barbero barbero2 = new BarberoBuilder()
                 .nombre("Andrés Pérez")
@@ -56,6 +64,7 @@ public class ModelFactory {
                 .telefono("300-765-4321")
                 .build();
 
+        // Se crean más barberos y clientes de manera similar para poblar la lista
         Barbero barbero3 = new BarberoBuilder()
                 .nombre("Jorge Martínez")
                 .cedula("37582910")
@@ -145,6 +154,7 @@ public class ModelFactory {
                 .telefono("311-789-0123")
                 .build();
 
+        // Se crean varias citas gestionadas y se les asignan los clientes y barberos creados
         GestionCita gestionCita1 = new GestionCita();
         gestionCita1.setCliente(cliente1);
         gestionCita1.setBarbero(barbero1);
@@ -185,15 +195,14 @@ public class ModelFactory {
         gestionCita5.setValorCita(TipoServicio.CEJAS.getValor());
         gestionCita5.setHoraCita(LocalTime.of(05, 30));
 
-
+        // Se agregan las citas gestionadas a la lista de la barbería
         barberia.getListaGestionCitas().add(gestionCita1);
         barberia.getListaGestionCitas().add(gestionCita2);
         barberia.getListaGestionCitas().add(gestionCita3);
         barberia.getListaGestionCitas().add(gestionCita4);
         barberia.getListaGestionCitas().add(gestionCita5);
 
-
-//Se agrega a la lista los clientes
+        // Se agrega la lista de clientes a la barbería
         barberia.getListaClientes().add(cliente1);
         barberia.getListaClientes().add(cliente2);
         barberia.getListaClientes().add(cliente3);
@@ -205,7 +214,7 @@ public class ModelFactory {
         barberia.getListaClientes().add(cliente9);
         barberia.getListaClientes().add(cliente10);
 
-        //Se agrega a la lista los barberos
+        // Se agrega la lista de barberos a la barbería
         barberia.getListaBarberos().add(barbero1);
         barberia.getListaBarberos().add(barbero2);
         barberia.getListaBarberos().add(barbero3);
@@ -216,37 +225,40 @@ public class ModelFactory {
         barberia.getListaBarberos().add(barbero8);
         barberia.getListaBarberos().add(barbero9);
         barberia.getListaBarberos().add(barbero10);
-
-
     }
 
-
+    // Método para obtener la lista de clientes
     public List<Cliente> getListaClientes() {
         return barberia.getListaClientes();
     }
 
+    // Método para crear un nuevo cliente en la barbería
     public boolean crearCliente(Cliente cliente) {
         return barberia.crearCliente(cliente);
     }
 
+    // Método para eliminar un cliente de la barbería
     public boolean eliminarCliente(Cliente clienteSeleccionado) {
         return barberia.eliminarCliente(clienteSeleccionado);
     }
 
+    // Método para actualizar los datos de un cliente
     public boolean actualizarCliente(Cliente clienteSeleccionado, Cliente clienteActualizado) {
         return barberia.actualizarCliente(clienteSeleccionado, clienteActualizado);
     }
 
+    // Método para obtener la lista de citas gestionadas, transformadas a DTOs
     public List<GestionCitaDto> getListaGestionCitas() {
         List<GestionCita> listaGestionCitas = barberia.getListaGestionCitas();
         List<GestionCitaDto> listaGestionCitasDto = new ArrayList<>();
 
-        for(GestionCita gestionCita: listaGestionCitas){
+        for (GestionCita gestionCita : listaGestionCitas) {
             listaGestionCitasDto.add(buildGestionCitaDto(gestionCita));
         }
         return listaGestionCitasDto;
     }
 
+    // Método privado para convertir una cita gestionada en un DTO
     private GestionCitaDto buildGestionCitaDto(GestionCita gestionCita) {
         return new GestionCitaDto(
                 gestionCita.getCliente().getNombre(),
@@ -259,22 +271,27 @@ public class ModelFactory {
         );
     }
 
+    // Método para obtener la lista de barberos
     public List<Barbero> getListaBarberos() {
         return barberia.getListaBarberos();
     }
 
+    // Método para agregar una nueva cita gestionada
     public boolean agregarCita(GestionCita nuevaCita) {
         return barberia.agregarCita(nuevaCita);
     }
 
+    // Método para eliminar una cita gestionada existente
     public boolean eliminarCita(GestionCita gestionCita) {
         return barberia.eliminarCita(gestionCita);
     }
 
+    // Método para actualizar una cita gestionada existente
     public boolean actualizarCita(GestionCita gestionCita, GestionCita gestionCitaActualizada) {
         return barberia.actualizarCita(gestionCita, gestionCitaActualizada);
     }
 
+    // Métodos para la gestión de barberos (crear, eliminar, actualizar)
     public boolean crearBarbero(Barbero barbero) {
         return barberia.crearBarbero(barbero);
     }

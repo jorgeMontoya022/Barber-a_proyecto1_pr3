@@ -1,9 +1,8 @@
-package proyecto1_programacion3.proyecto_app.model.builder;
+package proyecto1_programacion3.proyecto_app.builder;
 
-import proyecto1_programacion3.proyecto_app.model.Barberia;
 import proyecto1_programacion3.proyecto_app.model.Barbero;
 import proyecto1_programacion3.proyecto_app.model.Cliente;
-import proyecto1_programacion3.proyecto_app.services.IBuilder;
+import proyecto1_programacion3.proyecto_app.builder.services.IBuilder;
 
 public class ClienteBuilder implements IBuilder {
     private String nombre;

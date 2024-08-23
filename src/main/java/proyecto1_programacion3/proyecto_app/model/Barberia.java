@@ -1,13 +1,15 @@
 package proyecto1_programacion3.proyecto_app.model;
 
-import proyecto1_programacion3.proyecto_app.services.IGestionCliente;
+import proyecto1_programacion3.proyecto_app.model.services.IGestionBarbero;
+import proyecto1_programacion3.proyecto_app.model.services.IGestionCita;
+import proyecto1_programacion3.proyecto_app.model.services.IGestionCliente;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Barberia implements IGestionCliente {
+public class Barberia implements IGestionCliente, IGestionBarbero, IGestionCita {
     private List<Cliente> listaClientes = new ArrayList<>();
     private List<Barbero> listaBarberos = new ArrayList<>();
     private List<GestionCita> listaGestionCitas = new ArrayList<>();
@@ -80,7 +82,7 @@ public class Barberia implements IGestionCliente {
         }
         return false;
     }
-
+    @Override
     public boolean agregarCita(GestionCita nuevaCita) {
         if (nuevaCita != null && !citaExiste(nuevaCita.getFechaCita(), nuevaCita.getHoraCita(), nuevaCita.getBarbero())) {
             getListaGestionCitas().add(nuevaCita);
@@ -97,7 +99,7 @@ public class Barberia implements IGestionCliente {
         }
         return false;
     }
-
+    @Override
     public boolean eliminarCita(GestionCita gestionCita) {
         if (gestionCita != null) {
             for (GestionCita cita : getListaGestionCitas()) {
@@ -110,7 +112,7 @@ public class Barberia implements IGestionCliente {
 
         return false;
     }
-
+    @Override
     public boolean actualizarCita(GestionCita gestionCita, GestionCita gestionCitaActualizada) {
 
         for (int i = 0; i < getListaGestionCitas().size(); i++) {
@@ -122,7 +124,7 @@ public class Barberia implements IGestionCliente {
         }
         return false;
     }
-
+   @Override
     public boolean crearBarbero(Barbero barbero) {
         Barbero barberoEncontrado = buscarBarbero(barbero.getCedula());
         if (barberoEncontrado != null) {
@@ -142,7 +144,7 @@ public class Barberia implements IGestionCliente {
         }
         return null;
     }
-
+    @Override
     public boolean eliminarBarbero(Barbero barberoSeleccionado) {
         if (barberoSeleccionado != null) {
             int index = getListaBarberos().indexOf(barberoSeleccionado);
@@ -153,7 +155,7 @@ public class Barberia implements IGestionCliente {
         }
         return false;
     }
-
+    @Override
     public boolean actualizarBarbero(Barbero barberoSeleccionado, Barbero barberoActualizado) {
         int index = getListaBarberos().indexOf(barberoSeleccionado);
         if (index != -1) {

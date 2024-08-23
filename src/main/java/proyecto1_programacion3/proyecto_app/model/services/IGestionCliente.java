@@ -1,4 +1,4 @@
-package proyecto1_programacion3.proyecto_app.services;
+package proyecto1_programacion3.proyecto_app.model.services;
 
 import proyecto1_programacion3.proyecto_app.model.Cliente;
 
