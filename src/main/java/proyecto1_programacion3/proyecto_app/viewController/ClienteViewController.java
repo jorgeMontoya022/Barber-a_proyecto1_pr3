@@ -209,7 +209,7 @@ public class ClienteViewController {
                 if (clienteController.eliminarCliente(clienteSeleccionado)) {
                     int index = listaClientes.indexOf(clienteSeleccionado);
                     listaClientes.remove(index);
-                    mostrarMensaje("Notificación", "Cliente eliminado", "El cliente ha sido eliminado con éxito", Alert.AlertType.INFORMATION);
+                    mostrarMensaje("Notificación", "Cliente eliminado", "El cliente voló pala puta mierda", Alert.AlertType.INFORMATION);
                     limpiarDatos();
                     deseleccionarCliente();
                 } else {
