@@ -43,6 +43,7 @@ public class Barberia implements IGestionCliente, IGestionBarbero, IGestionCita 
     }
 
     @Override
+    //Creacion del cliente 
     public boolean crearCliente(Cliente cliente) {
         Cliente clienteEncontrado = buscarCliente(cliente.getCedula());
         if (clienteEncontrado == null) {
