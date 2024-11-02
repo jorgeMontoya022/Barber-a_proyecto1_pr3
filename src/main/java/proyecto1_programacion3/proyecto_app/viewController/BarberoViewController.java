@@ -55,9 +55,10 @@ public class BarberoViewController {
 
 
     @FXML
+
     void onAgregar(ActionEvent event) {
         agregarBarbero();
-
+        System.out.println("Barbero agregado");
     }
 
 
